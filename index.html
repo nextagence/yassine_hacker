@@ -1,299 +1,270 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Muhammed Hacker</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yassine Hacker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Cairo', sans-serif;
+    :root{
+      --orange:#ff7a00;
+      --green:#0cb86a;
+      --blue:#1b57f2;
+      --bg:#0b0f14;
+      --card:#121826;
+      --muted:#9aa4b2;
     }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif; color:#e9edf3;
+      background: radial-gradient(1000px 600px at 20% -10%, rgba(255,122,0,.18), transparent 60%),
+                  radial-gradient(900px 600px at 120% 0%, rgba(12,184,106,.18), transparent 60%),
+                  #0b0f14;
+      display:flex; align-items:center; justify-content:center; padding:20px;
+    }
+    .wrap{ width:min(480px, 100%); }
 
-    body {
-      background-color: #0b0f19;
-      color: #ffffff;
-      min-height: 100vh;
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      backdrop-filter: blur(6px);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:24px; padding:26px 22px; box-shadow:0 20px 60px rgba(0,0,0,.45);
+      animation: pop .6s ease;
+    }
+    @keyframes pop{ from{transform:translateY(10px); opacity:0} to{transform:none; opacity:1} }
+
+    .flag{width:64px; height:auto; display:block; margin:0 auto 8px; filter:drop-shadow(0 4px 10px rgba(0,0,0,.25));}
+    .title{ text-align:center; font-weight:800; letter-spacing:.2px; margin:2px 0 8px; font-size:28px; }
+    .subtitle{ text-align:center; color:var(--muted); font-size:14px; margin-bottom:18px }
+
+    .badges{display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin:0 0 14px}
+    .badge{font-size:11px; color:#d8dee9; background:#1a2336; border:1px solid rgba(255,255,255,.08); padding:6px 10px; border-radius:999px}
+
+    label.block{display:block; font-weight:600; margin-top:14px; margin-bottom:8px}
+    .games{
+      display:flex;
+      gap:10px;
+    }
+    .game-column {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
     }
-
-    .card {
-      background: #111827;
-      border: 1px solid #1f2937;
-      border-radius: 16px;
-      max-width: 440px;
-      width: 100%;
-      padding: 28px 24px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-      text-align: center;
-      position: relative;
+    .game{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:12px;
+      cursor:pointer;
+      background:#121a2b;
+      border:1px solid rgba(255,255,255,.08);
+      transition:transform .15s ease, border-color .15s ease, box-shadow .15s ease;
     }
+    .game:hover{ transform:translateY(-1px); border-color:rgba(255,255,255,.16); box-shadow:0 8px 20px rgba(0,0,0,.25)}
+    .game input{ accent-color:var(--green) }
+    .game .icon{font-size:18px}
 
-    .flag-img {
-      width: 56px;
-      height: auto;
-      border-radius: 6px;
-      margin-bottom: 12px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    .input{
+      width:100%; background:#121a2b; color:#e9edf3; border:1px solid rgba(255,255,255,.1); border-radius:12px;
+      padding:12px 14px; outline:none; transition:border-color .15s ease, box-shadow .15s ease;
     }
+    .input:focus{ border-color:var(--blue); box-shadow:0 0 0 4px rgba(27,87,242,.18) }
+    .hint{font-size:12px; color:var(--muted); margin-top:6px}
+    .warn{ display:none; color:#ff6767; font-size:13px; margin-top:8px; animation: flash .5s ease }
+    @keyframes flash{ from{opacity:0; transform:translateY(-2px)} to{opacity:1; transform:none} }
 
-    .title {
-      font-size: 24px;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-      margin-bottom: 6px;
-      color: #f9fafb;
+    .btn{
+      margin-top:16px; width:100%; border:0; border-radius:14px; padding:14px 16px; font-weight:800; font-size:16px;
+      color:#071018; background:linear-gradient(90deg, var(--orange), var(--green)); cursor:pointer;
+      box-shadow:0 10px 30px rgba(255,122,0,.25), 0 10px 30px rgba(12,184,106,.18);
+      transition: transform .12s ease, filter .2s ease, opacity .2s ease;
     }
+    .btn:disabled{opacity:.5; cursor:not-allowed; filter:grayscale(.3)}
+    .btn:not(:disabled):active{ transform:scale(.98) }
 
-    .subtitle {
-      font-size: 13px;
-      color: #9ca3af;
-      margin-bottom: 20px;
-    }
+    .progress{ display:none; height:10px; background:#101625; border-radius:999px; overflow:hidden; margin-top:14px; border:1px solid rgba(255,255,255,.08) }
+    .bar{ height:100%; width:0; background:linear-gradient(90deg, var(--orange), var(--green)); animation: fill 2.4s linear forwards }
+    @keyframes fill{ from{width:0} to{width:100%} }
 
-    .badges {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-    }
-
-    .badge {
-      font-size: 11px;
-      background: #1f2937;
-      border: 1px solid #374151;
-      padding: 5px 10px;
-      border-radius: 20px;
-      color: #d1d5db;
-    }
-
-    .input-group {
-      margin-bottom: 16px;
-      text-align: right;
-    }
-
-    .input-box {
-      width: 100%;
-      background: #1f2937;
-      border: 1px solid #374151;
-      color: #ffffff;
-      padding: 12px 14px;
-      border-radius: 8px;
-      font-size: 15px;
-      text-align: center;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    .input-box:focus {
-      border-color: #10b981;
-    }
-
-    .hint {
-      font-size: 11px;
-      color: #6b7280;
-      margin-top: 6px;
-      text-align: center;
-    }
-
-    .error-text {
-      font-size: 12px;
-      color: #ef4444;
-      margin-top: 6px;
-      display: none;
-    }
-
-    .btn {
-      width: 100%;
-      background: #10b981;
-      color: #ffffff;
-      border: none;
-      padding: 12px;
-      border-radius: 8px;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      margin-top: 10px;
-      transition: background 0.2s;
-    }
-
-    .btn:hover {
-      background: #059669;
-    }
-
-    .progress-bar-container {
-      width: 100%;
-      height: 6px;
-      background: #1f2937;
-      border-radius: 4px;
-      overflow: hidden;
-      margin: 20px 0;
-      display: none;
-    }
-
-    .progress-bar {
-      width: 0%;
-      height: 100%;
-      background: #10b981;
-      transition: width 0.3s;
-    }
-
-    .stats {
-      display: flex;
-      justify-content: space-between;
-      font-size: 12px;
-      color: #9ca3af;
-      margin-top: 16px;
-      padding-top: 16px;
-      border-top: 1px solid #1f2937;
-    }
-
-    .footer {
-      font-size: 11px;
-      color: #4b5563;
-      margin-top: 20px;
-    }
-
+    /* Modal styles */
     .modal-overlay {
       position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.75);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      z-index: 100;
-    }
-
-    .modal {
-      background: #111827;
-      border: 1px solid #374151;
-      border-radius: 12px;
-      padding: 24px;
-      max-width: 360px;
+      top: 0;
+      left: 0;
       width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.visible {
+      visibility: visible;
+      opacity: 1;
+    }
+    .modal-content {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 24px;
+      padding: 26px 22px;
+      width: min(400px, 90%);
       text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,.5);
+      animation: pop 0.6s ease;
     }
-
     .modal-title {
-      font-size: 18px;
-      font-weight: 700;
-      color: #ef4444;
-      margin-bottom: 12px;
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .modal-text {
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    .modal-close-btn {
+      background: linear-gradient(90deg, var(--orange), var(--green));
+      border: 0;
+      border-radius: 14px;
+      padding: 12px 24px;
+      font-weight: 800;
+      font-size: 16px;
+      color: #071018;
+      cursor: pointer;
+      transition: transform .12s ease;
+    }
+    .modal-close-btn:active {
+      transform: scale(0.98);
     }
 
-    .modal-desc {
-      font-size: 13px;
-      color: #d1d5db;
-      line-height: 1.6;
-      margin-bottom: 20px;
+    .meta{display:flex; justify-content:space-between; align-items:center; margin-top:20px; color:var(--muted); font-size:13px}
+
+    .footer{ text-align:center; color:#a6b0be; font-size:12px; margin-top:14px }
+    .footer strong{color:#fff}
+
+    @media (max-width:420px){
+      .title{font-size:24px}
+      .games{
+        flex-direction: column;
+        align-items: center;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="wrap" dir="rtl">
+    <div class="card">
+      <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/Flag_of_Morocco.svg/960px-Flag_of_Morocco.svg.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail" class="flag" alt="Morocco Flag"/>
+      <div class="title">Yassine Hacker</div>
+      <div class="subtitle">إشارات سريعة • مخصص للمغرب • MAD</div>
 
-  <div class="card">
-    <img class="flag-img" alt="Algeria Flag" src="https://flagcdn.com/w320/dz.png">
-    <div class="title">Muhammed Hacker</div>
-    <div class="subtitle">إشارات سريعة • صنع للجزائر • DZD</div>
+      <div class="badges">
+        <div class="badge">🔒 آمن ومضمون</div>
+        <div class="badge">✅ مجرب ومأكد</div>
+        <div class="badge">✨ بالذكاء الاصطناعي</div>
+      </div>
 
-    <div class="badges">
-      <div class="badge">🔒 آمن</div>
-      <div class="badge">✅ تم التحقق</div>
-      <div class="badge">✨ مدعوم بالذكاء الاصطناعي</div>
-    </div>
+      <label class="block">عزل اللعبة ديالك</label>
+      <div class="games">
+        <div class="game-column">
+          <label class="game"><input type="radio" name="game" value="Crash" checked> <span class="icon">💥</span> Crash</label>
+          <label class="game"><input type="radio" name="game" value="Aviator"> <span class="icon">✈️</span> Aviator</label>
+          <label class="game"><input type="radio" name="game" value="Penalty"> <span class="icon">⚽️</span> Penalty</label>
+        </div>
+        <div class="game-column">
+          <label class="game"><input type="radio" name="game" value="Mines"> <span class="icon">💎</span> Mines</label>
+          <label class="game"><input type="radio" name="game" value="Chicken Road"> <span class="icon">🐔</span> Chicken Road</label>
+        </div>
+      </div>
 
-    <div class="input-group">
-      <input type="text" id="userId" class="input-box" placeholder="معرف الحساب (ID)" maxlength="10">
-      <div class="hint">أدخل 10 أرقام • العملة: DZD</div>
-      <div class="error-text" id="inputError">الرجاء إدخال معرف صالح مكون من 10 أرقام.</div>
-    </div>
+      <label class="block" for="acc">معرف الحساب (ID 1xBet)</label>
+      <input id="acc" class="input" placeholder="مثال: 9876543210" maxlength="10" inputmode="numeric" />
+      <div class="hint">دخل 10 ديال الأرقام • العملة: MAD (درهم)</div>
+      <div class="warn" id="warn">عافاك دخل ID صحيح فيه 10 أرقام.</div>
 
-    <button class="btn" id="submitBtn">بدء التحليل</button>
+      <button class="btn" id="start" disabled>بدا دابا</button>
+      <div class="progress" id="progress"><div class="bar"></div></div>
 
-    <div class="progress-bar-container" id="progressContainer">
-      <div class="progress-bar" id="progressBar"></div>
-    </div>
+      <div class="meta">
+        <div>🔵 متصل دابا: <span id="online">143</span></div>
+        <div>⏳ الوقت المتبقي: <span id="countdown">05:00</span></div>
+      </div>
 
-    <div class="stats">
-      <div>🔵 متصل: <span id="onlineCount">143</span></div>
-      <div>⏳ ينتهي الوصول خلال <span id="timer">05:00</span></div>
-    </div>
-
-    <div class="footer">
-      صنع بواسطة <strong>HackerHouse</strong> • بنغالور
+      <div class="footer">مطور من طرف <strong>HackerHouse</strong></div>
     </div>
   </div>
 
-  <div class="modal-overlay" id="errorModal">
-    <div class="modal">
-      <div class="modal-title">خطأ في التفعيل</div>
-      <div class="modal-desc">
-        ❌ لم يتم العثور على إيداع بقيمة 1500 دينار جزائري. الرجاء إيداع المبلغ والمحاولة مرة أخرى.
-      </div>
-      <button class="btn" id="closeModalBtn" style="background: #374151;">إغلاق</button>
+  <!-- Modal -->
+  <div id="modalOverlay" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-title">مشكل فالتفعيل</div>
+      <div class="modal-text">❌ مالقينا حتى روشارج بقيمة 100 درهم مغربي (MAD). عافاك شحن الحساب وعاود جرب.</div>
+      <button class="modal-close-btn" id="modalCloseBtn">سد</button>
     </div>
   </div>
 
   <script>
-    // Обратный отсчет таймера
-    let timeLeft = 300;
-    const timerElement = document.getElementById('timer');
-    setInterval(() => {
-      if (timeLeft <= 0) return;
-      timeLeft--;
-      const minutes = String(Math.floor(timeLeft / 60)).padStart(2, '0');
-      const seconds = String(timeLeft % 60).padStart(2, '0');
-      timerElement.textContent = `${minutes}:${seconds}`;
+    // Countdown
+    let left = 300; 
+    const cd = document.getElementById('countdown');
+    setInterval(() => { 
+      if (left > 0) left--; 
+      const m = Math.floor(left / 60).toString().padStart(2, '0'); 
+      const s = (left % 60).toString().padStart(2, '0'); 
+      cd.textContent = `${m}:${s}`; 
     }, 1000);
 
-    // Валидация и запуск имитации
-    const userIdInput = document.getElementById('userId');
-    const inputError = document.getElementById('inputError');
-    const submitBtn = document.getElementById('submitBtn');
-    const progressContainer = document.getElementById('progressContainer');
-    const progressBar = document.getElementById('progressBar');
-    const errorModal = document.getElementById('errorModal');
-    const closeModalBtn = document.getElementById('closeModalBtn');
+    // Online counter micro-variation
+    const onlineEl = document.getElementById('online');
+    setInterval(() => { 
+      const base = 140; 
+      const jitter = Math.floor(Math.random() * 8) - 4; 
+      onlineEl.textContent = base + jitter; 
+    }, 2500);
 
-    submitBtn.addEventListener('click', () => {
-      const val = userIdInput.value.trim();
-      if (!/^\d{10}$/.test(val)) {
-        inputError.style.display = 'block';
-        return;
-      }
-      inputError.style.display = 'none';
-      submitBtn.disabled = true;
-      progressContainer.style.display = 'block';
-
-      let progress = 0;
-      const interval = setInterval(() => {
-        progress += 10;
-        progressBar.style.width = progress + '%';
-        if (progress >= 100) {
-          clearInterval(interval);
-          setTimeout(() => {
-            progressContainer.style.display = 'none';
-            progressBar.style.width = '0%';
-            submitBtn.disabled = false;
-            errorModal.style.display = 'flex';
-          }, 400);
-        }
-      }, 150);
+    // ID validation
+    const acc = document.getElementById('acc');
+    const start = document.getElementById('start');
+    const warn = document.getElementById('warn');
+    acc.addEventListener('input', () => {
+      const ok = /^\d{10}$/.test(acc.value);
+      start.disabled = !ok; 
+      warn.style.display = ok ? 'none' : 'block';
     });
 
-    closeModalBtn.addEventListener('click', () => {
-      errorModal.style.display = 'none';
+    // Modal
+    const modalOverlay = document.getElementById('modalOverlay');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+    const progress = document.getElementById('progress');
+
+    function showModal() {
+      modalOverlay.classList.add('visible');
+    }
+
+    function hideModal() {
+      modalOverlay.classList.remove('visible');
+    }
+
+    start.addEventListener('click', () => {
+      progress.style.display = 'block';
+      const bar = progress.querySelector('.bar');
+      bar.style.animation = 'none'; 
+      bar.offsetHeight; 
+      bar.style.animation = 'fill 2.4s linear forwards';
+      setTimeout(() => {
+        showModal();
+      }, 2400);
     });
+
+    modalCloseBtn.addEventListener('click', hideModal);
   </script>
 </body>
 </html>
